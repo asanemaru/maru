@@ -989,10 +989,30 @@
     }
 
     // URLパラメータ ?lang=en が付いていたら英語モードで表示
+    // URLハッシュ #credits または #credits-en が付いていたら利用規約タブを開いてスクロール
     window.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
-      if (params.get('lang') === 'en') {
+      const isEn = params.get('lang') === 'en';
+      if (isEn) {
         switchLang('en');
+      }
+
+      const hash = window.location.hash;
+      if (hash === '#credits' || hash === '#credits-en') {
+        // 英語版ハッシュなら英語モードに切り替え
+        if (hash === '#credits-en' && !isEn) {
+          switchLang('en');
+        }
+        // クレジットは利用規約タブにあるので、利用規約タブを開く
+        const lang = (hash === '#credits-en' || isEn) ? 'en' : 'ja';
+        switchTab(lang, 'terms');
+        // タブ切り替え後に対象要素までスクロール
+        setTimeout(() => {
+          const target = document.getElementById(hash.substring(1));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
       }
     });
   </script>
