@@ -276,7 +276,7 @@
 
     .form-wrap iframe {
       width: 100%;
-      min-height: 1700px;
+      min-height: 2400px;
       border-radius: 10px;
       border: 1px solid var(--border);
       overflow: hidden;
@@ -410,13 +410,39 @@
         display: none !important;
       }
 
+      .container {
+        padding: 40px 20px 60px;
+      }
+
+      .page-title {
+        font-size: 26px;
+        line-height: 1.4;
+      }
+
       .support-block {
-        padding: 24px 20px;
+        padding: 22px 18px;
+      }
+
+      .support-block p,
+      .support-block li {
+        font-size: 14px;
+      }
+
+      .support-block a {
+        word-break: break-all;
+        overflow-wrap: anywhere;
       }
 
       footer {
         padding: 24px 20px;
         flex-direction: column;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        width: 100%;
       }
     }
   </style>
@@ -538,7 +564,7 @@
       <div class="form-wrap">
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLSeGjtYKpaoAR9_Fv0wFMC_DlbZrjObYCA3ZFNIKF7owfh33bg/viewform?embedded=true"
-          width="100%" height="1700" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"
+          width="100%" height="2400" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"
           style="border-radius:10px;border:1px solid var(--border);display:block;">
           <span class="ja-text">読み込んでいます…</span>
           <span class="en-text">Loading…</span>

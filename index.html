@@ -432,8 +432,32 @@
         display: none !important;
       }
 
+      .hero {
+        padding: 72px 20px 56px;
+      }
+
+      .hero h1 {
+        letter-spacing: 0.005em;
+      }
+
+      .hero .sub {
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
       .feature-grid {
         grid-template-columns: 1fr 1fr;
+      }
+
+      /* スクリーンショットをスマホサイズに縮小 */
+      .screenshot-item,
+      .screenshot-item img {
+        width: 260px;
+      }
+
+      .screenshot-placeholder {
+        width: 260px;
+        height: 563px;
       }
 
       .screenshots-scroll {
@@ -441,15 +465,41 @@
         justify-content: flex-start;
       }
 
+      .features {
+        padding: 64px 20px;
+      }
+
+      .concept {
+        padding: 72px 20px;
+      }
+
+      /* フッターを縦並びに */
       footer {
         padding: 24px 20px;
         flex-direction: column;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        width: 100%;
       }
     }
 
     @media (max-width: 420px) {
       .feature-grid {
         grid-template-columns: 1fr;
+      }
+
+      .screenshot-item,
+      .screenshot-item img {
+        width: 240px;
+      }
+
+      .screenshot-placeholder {
+        width: 240px;
+        height: 520px;
       }
     }
   </style>
@@ -487,10 +537,10 @@
 
   <!-- ヒーロー -->
   <section class="hero">
-    <h1 class="ja-text">　まるごとの自分を、<br>　あるがままに。</h1>
+    <h1 class="ja-text">まるごとの自分を、あるがままに。</h1>
     <h1 class="en-text">All of you.<br>As you are.</h1>
-    <p class="sub ja-text"> ２４時間・習慣・ＴＯＤＯ、<br>今日の自分を、まるごと１画面で。</p>
-    <p class="sub en-text">Goals, time, habits — <br>three tools in one screen.</p>
+    <p class="sub ja-text">２４時間・習慣・ＴＯＤＯ、今日の自分を、まるごと１画面で。</p>
+    <p class="sub en-text">Goals, time, habits — three tools in one screen.</p>
     <a href="#">
       <img src="Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" height="44" alt="Download on the App Store">
     </a>
@@ -644,8 +694,8 @@
   <!-- コンセプト -->
   <section class="concept">
     <div class="concept-inner">
-      <h2 class="ja-text">　頑張った日も、できなかったことも、寄り道した時間も、<br>まるごとあなた。</h2>
-      <h2 class="en-text">The days you worked hard, the things you couldn't do, the time you took detours—<br>all of it
+      <h2 class="ja-text">頑張った日も、できなかったことも、寄り道した時間も、まるごとあなた。</h2>
+      <h2 class="en-text">The days you worked hard, the things you couldn't do, the time you took detours—all of it
         is you.</h2>
       <div style="margin-top:36px;">
         <a href="#">

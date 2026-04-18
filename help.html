@@ -421,7 +421,27 @@
       .hide-sp { display: none !important; }
       .help-body { padding: 28px 20px 60px; }
       .page-header { padding: 40px 20px 32px; }
+      .page-header h1 { font-size: 26px; line-height: 1.4; }
+
+      /* 本文カード内の余白とフォントをスマホ向けに */
+      .help-section { padding: 22px 18px; }
+      .help-section p,
+      .help-section li { font-size: 14px; }
+
+      /* 長いURLやパスのはみ出し防止 */
+      .help-section a,
+      .contact-card a { word-break: break-all; overflow-wrap: anywhere; }
+
       footer { padding: 24px 20px; flex-direction: column; }
+
+      /* フッターリンクを縦並びに */
+      .footer-links {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        width: 100%;
+      }
+
       .contact-card { flex-direction: column; align-items: flex-start; }
     }
   </style>

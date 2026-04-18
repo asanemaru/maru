@@ -428,17 +428,52 @@
         display: none !important;
       }
 
+      .container {
+        padding: 40px 20px 60px;
+      }
+
+      .page-title {
+        font-size: 26px;
+        line-height: 1.4;
+      }
+
       .legal-block {
-        padding: 24px 20px;
+        padding: 22px 18px;
       }
 
       .legal-block h2 {
         font-size: 16px;
       }
 
+      .legal-block p,
+      .legal-block li {
+        font-size: 14px;
+      }
+
+      /* 長いURLやパスをはみ出させない */
+      .legal-block a {
+        word-break: break-all;
+        overflow-wrap: anywhere;
+      }
+
+      /* タブボタンを左右均等幅に */
+      .tab-btn {
+        flex: 1;
+        font-size: 14px;
+        padding: 14px 8px;
+      }
+
+      /* フッター：リンクを縦並びに整える */
       footer {
         padding: 24px 20px;
         flex-direction: column;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        width: 100%;
       }
     }
 
