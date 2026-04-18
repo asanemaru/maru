@@ -417,7 +417,20 @@
 
     /* ── レスポンシブ ── */
     @media (max-width: 640px) {
-      .site-nav { padding: 0 20px; }
+      .site-nav { padding: 0 16px; }
+
+      /* ヘッダーナビ：スマホでも表示・文字小さく */
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 12px; }
+      .nav-links a.btn-nav { padding: 6px 14px; font-size: 12px; }
+      .nav-links a.nav-support-long { display: none !important; }
+      .nav-links a.nav-support-short { display: inline !important; }
+      .lang-toggle { gap: 2px; }
+      .lang-btn { padding: 4px 8px; font-size: 11px; }
+
+      /* スマホ用の強制改行 */
+      .sp-br { display: inline; }
+
       .hide-sp { display: none !important; }
       .help-body { padding: 28px 20px 60px; }
       .page-header { padding: 40px 20px 32px; }
@@ -444,6 +457,12 @@
 
       .contact-card { flex-direction: column; align-items: flex-start; }
     }
+
+    /* デスクトップではsp-brと短縮版を無効化 */
+    @media (min-width: 641px) {
+      .sp-br { display: none; }
+      .nav-links a.nav-support-short { display: none !important; }
+    }
   </style>
 </head>
 
@@ -465,12 +484,14 @@
       <span class="nav-logo-text">Maru</span>
     </a>
     <div class="nav-links">
-      <div class="lang-toggle hide-sp">
+      <div class="lang-toggle">
         <button class="lang-btn active" onclick="switchLang('ja')">JP</button>
         <button class="lang-btn" onclick="switchLang('en')">EN</button>
       </div>
-      <a href="./support.html" class="hide-sp ja-text active">よくある質問・お問い合わせ</a>
-      <a href="./support.html?lang=en" class="hide-sp en-text active">FAQ &amp; Contact</a>
+      <a href="./support.html" class="nav-support-long ja-text">よくある質問・お問い合わせ</a>
+      <a href="./support.html?lang=en" class="nav-support-long en-text">FAQ &amp; Contact</a>
+      <a href="./support.html" class="nav-support-short ja-text">お問い合わせ</a>
+      <a href="./support.html?lang=en" class="nav-support-short en-text">Support</a>
       <a href="#" class="btn-nav"><span class="ja-text">App Storeでダウンロード</span><span class="en-text">Download</span></a>
     </div>
   </nav>

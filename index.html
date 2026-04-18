@@ -425,11 +425,45 @@
 
     @media (max-width: 640px) {
       .site-nav {
-        padding: 0 20px;
+        padding: 0 16px;
       }
 
-      .hide-sp {
+      /* ヘッダーナビ：スマホでも表示・文字小さく・余白詰める */
+      .nav-links {
+        gap: 14px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .nav-links a.btn-nav {
+        padding: 6px 14px;
+        font-size: 12px;
+      }
+
+      /* 長すぎる「よくある質問・お問い合わせ」は短く */
+      .nav-links a.nav-support-long {
         display: none !important;
+      }
+
+      .nav-links a.nav-support-short {
+        display: inline !important;
+      }
+
+      /* 言語切替ボタンを小さく */
+      .lang-toggle {
+        gap: 2px;
+      }
+
+      .lang-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+      }
+
+      /* スマホ用の強制改行 */
+      .sp-br {
+        display: inline;
       }
 
       .hero {
@@ -501,6 +535,22 @@
         width: 240px;
         height: 520px;
       }
+
+      /* さらに小さい画面ではヘルプと言語切替も隠す */
+      .nav-links .nav-help {
+        display: none !important;
+      }
+    }
+
+    /* デスクトップではsp-brは無効化 */
+    @media (min-width: 641px) {
+      .sp-br {
+        display: none;
+      }
+
+      .nav-links a.nav-support-short {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -523,23 +573,25 @@
       <span class="nav-logo-text">Maru</span>
     </a>
     <div class="nav-links">
-      <div class="lang-toggle hide-sp">
+      <div class="lang-toggle">
         <button class="lang-btn active" onclick="switchLang('ja')">JP</button>
         <button class="lang-btn" onclick="switchLang('en')">EN</button>
       </div>
-      <a href="./help.html" class="hide-sp ja-text">ヘルプ</a>
-      <a href="./help.html?lang=en" class="hide-sp en-text">Help</a>
-      <a href="./support.html" class="hide-sp ja-text">よくある質問・お問い合わせ</a>
-      <a href="./support.html?lang=en" class="hide-sp en-text">Support</a>
+      <a href="./help.html" class="nav-help ja-text">ヘルプ</a>
+      <a href="./help.html?lang=en" class="nav-help en-text">Help</a>
+      <a href="./support.html" class="nav-support-long ja-text">よくある質問・お問い合わせ</a>
+      <a href="./support.html?lang=en" class="nav-support-long en-text">Support</a>
+      <a href="./support.html" class="nav-support-short ja-text">お問い合わせ</a>
+      <a href="./support.html?lang=en" class="nav-support-short en-text">Support</a>
       <a href="#" class="btn-nav"><span class="ja-text">App Storeでダウンロード</span><span class="en-text">Download</span></a>
     </div>
   </nav>
 
   <!-- ヒーロー -->
   <section class="hero">
-    <h1 class="ja-text">まるごとの自分を、あるがままに。</h1>
+    <h1 class="ja-text">まるごとの自分を、<br class="sp-br">あるがままに。</h1>
     <h1 class="en-text">All of you.<br>As you are.</h1>
-    <p class="sub ja-text">２４時間・習慣・ＴＯＤＯ、今日の自分を、まるごと１画面で。</p>
+    <p class="sub ja-text">２４時間・習慣・ＴＯＤＯ、<br class="sp-br">今日の自分を、まるごと１画面で。</p>
     <p class="sub en-text">Goals, time, habits — three tools in one screen.</p>
     <a href="#">
       <img src="Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" height="44" alt="Download on the App Store">
@@ -694,7 +746,7 @@
   <!-- コンセプト -->
   <section class="concept">
     <div class="concept-inner">
-      <h2 class="ja-text">頑張った日も、できなかったことも、寄り道した時間も、まるごとあなた。</h2>
+      <h2 class="ja-text">頑張った日も、できなかったことも、<br class="sp-br">寄り道した時間も、まるごとあなた。</h2>
       <h2 class="en-text">The days you worked hard, the things you couldn't do, the time you took detours—all of it
         is you.</h2>
       <div style="margin-top:36px;">
@@ -759,6 +811,18 @@
       const params = new URLSearchParams(window.location.search);
       if (params.get('lang') === 'en') {
         switchLang('en');
+      }
+
+      // スクリーンショットの初期表示を2枚目（中央）にスクロール
+      const scroll = document.querySelector('.screenshots-scroll');
+      if (scroll) {
+        const items = scroll.querySelectorAll('.screenshot-item');
+        if (items.length >= 2) {
+          const target = items[1];
+          // 中央のスクショを中心に配置
+          const scrollLeft = target.offsetLeft - (scroll.clientWidth - target.clientWidth) / 2;
+          scroll.scrollLeft = scrollLeft;
+        }
       }
     });
   </script>
