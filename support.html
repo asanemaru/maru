@@ -401,32 +401,40 @@
       display: none !important;
     }
 
+    /* スマホ用バッジのデフォルトスタイル（通常は非表示） */
+    .btn-nav-sp {
+      display: none;
+    }
+
+    .btn-nav-sp img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
     @media (max-width: 640px) {
       .site-nav {
         padding: 0 16px;
       }
 
-      /* ヘッダーナビ：スマホでも表示・文字小さく */
+      /* ヘッダーナビ：要素を詰める */
       .nav-links {
-        gap: 14px;
+        gap: 10px;
       }
 
-      .nav-links a {
-        font-size: 12px;
+      /* スマホではヘルプを非表示 */
+      .nav-links .nav-help {
+        display: none !important;
       }
 
-      .nav-links a.btn-nav {
-        padding: 6px 14px;
-        font-size: 12px;
+      /* PC用ボタンも非表示 */
+      .nav-links .btn-nav-pc {
+        display: none !important;
       }
 
-      /* App Storeボタンの文字を短縮 */
-      .btn-nav .btn-text-long {
-        display: none;
-      }
-
-      .btn-nav .btn-text-short {
-        display: inline;
+      /* スマホ用SVGバッジを表示 */
+      .nav-links .btn-nav-sp {
+        display: inline-block;
       }
 
       .lang-toggle {
@@ -499,13 +507,13 @@
       }
     }
 
-    /* デスクトップではsp-brを無効化 */
+    /* デスクトップではsp-brとスマホ用バッジを無効化 */
     @media (min-width: 641px) {
       .sp-br {
         display: none;
       }
 
-      .btn-nav .btn-text-short {
+      .nav-links .btn-nav-sp {
         display: none;
       }
     }
@@ -535,12 +543,14 @@
       </div>
       <a href="./help.html" class="nav-help ja-text">ヘルプ</a>
       <a href="./help.html?lang=en" class="nav-help en-text">Help</a>
-      <a href="./support.html" class="hide-sp active ja-text">よくある質問・お問い合わせ</a>
-      <a href="./support.html?lang=en" class="hide-sp active en-text">Support</a>
-      <a href="#" class="btn-nav">
-        <span class="ja-text btn-text-long">App Storeでダウンロード</span>
-        <span class="ja-text btn-text-short">ダウンロード</span>
+      <!-- PC用：テキストボタン -->
+      <a href="#" class="btn-nav btn-nav-pc">
+        <span class="ja-text">App Storeでダウンロード</span>
         <span class="en-text">Download</span>
+      </a>
+      <!-- スマホ用：公式SVGバッジ -->
+      <a href="#" class="btn-nav-sp">
+        <img src="Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store">
       </a>
     </div>
   </nav>

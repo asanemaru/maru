@@ -421,25 +421,39 @@
     .en-shown .nav-links a.ja-text { display: none !important; }
     .en-shown .nav-links a.en-text { display: inline !important; }
 
+    /* スマホ用バッジのデフォルトスタイル（通常は非表示） */
+    .btn-nav-sp {
+      display: none;
+    }
+
+    .btn-nav-sp img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
     /* ── レスポンシブ ── */
     @media (max-width: 640px) {
       .site-nav { padding: 0 16px; }
 
-      /* ヘッダーナビ：スマホでも表示・文字小さく */
-      .nav-links { gap: 12px; }
-      .nav-links a { font-size: 12px; }
-      .nav-links a.btn-nav { padding: 6px 14px; font-size: 12px; }
+      /* ヘッダーナビ：要素を詰める */
+      .nav-links { gap: 10px; }
 
-      /* スマホでは長い版を隠し、短縮版を表示 */
-      .nav-links a.nav-support-long { display: none !important; }
-      .nav-links a.nav-support-short.ja-text { display: inline !important; }
-      .nav-links a.nav-support-short.en-text { display: none !important; }
-      body.en-shown .nav-links a.nav-support-short.ja-text { display: none !important; }
-      body.en-shown .nav-links a.nav-support-short.en-text { display: inline !important; }
+      /* スマホではヘルプとお問い合わせを非表示 */
+      .nav-links .nav-help,
+      .nav-links .nav-support {
+        display: none !important;
+      }
 
-      /* App Storeボタンの文字を短縮 */
-      .btn-nav .btn-text-long { display: none; }
-      .btn-nav .btn-text-short { display: inline; }
+      /* PC用ボタンも非表示 */
+      .nav-links .btn-nav-pc {
+        display: none !important;
+      }
+
+      /* スマホ用SVGバッジを表示 */
+      .nav-links .btn-nav-sp {
+        display: inline-block;
+      }
 
       .lang-toggle { gap: 2px; }
       .lang-btn { padding: 4px 8px; font-size: 11px; }
@@ -474,11 +488,10 @@
       .contact-card { flex-direction: column; align-items: flex-start; }
     }
 
-    /* デスクトップではsp-brと短縮版を無効化 */
+    /* デスクトップではsp-brとスマホ用バッジを無効化 */
     @media (min-width: 641px) {
       .sp-br { display: none; }
-      .nav-links a.nav-support-short { display: none !important; }
-      .btn-nav .btn-text-short { display: none; }
+      .nav-links .btn-nav-sp { display: none; }
     }
   </style>
 </head>
@@ -505,14 +518,16 @@
         <button class="lang-btn active" onclick="switchLang('ja')">JP</button>
         <button class="lang-btn" onclick="switchLang('en')">EN</button>
       </div>
-      <a href="./support.html" class="nav-support-long ja-text">よくある質問・お問い合わせ</a>
-      <a href="./support.html?lang=en" class="nav-support-long en-text">FAQ &amp; Contact</a>
-      <a href="./support.html" class="nav-support-short ja-text">お問い合わせ</a>
-      <a href="./support.html?lang=en" class="nav-support-short en-text">Support</a>
-      <a href="#" class="btn-nav">
-        <span class="ja-text btn-text-long">App Storeでダウンロード</span>
-        <span class="ja-text btn-text-short">ダウンロード</span>
+      <a href="./support.html" class="nav-support ja-text">よくある質問・お問い合わせ</a>
+      <a href="./support.html?lang=en" class="nav-support en-text">FAQ &amp; Contact</a>
+      <!-- PC用：テキストボタン -->
+      <a href="#" class="btn-nav btn-nav-pc">
+        <span class="ja-text">App Storeでダウンロード</span>
         <span class="en-text">Download</span>
+      </a>
+      <!-- スマホ用：公式SVGバッジ -->
+      <a href="#" class="btn-nav-sp">
+        <img src="Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store">
       </a>
     </div>
   </nav>
