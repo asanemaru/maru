@@ -422,8 +422,11 @@
         gap: 10px;
       }
 
-      /* スマホではヘルプを非表示 */
-      .nav-links .nav-help {
+      /* スマホではヘルプを完全非表示（言語切替に関わらず） */
+      .nav-links a.nav-help.ja-text,
+      .nav-links a.nav-help.en-text,
+      .en-shown .nav-links a.nav-help.ja-text,
+      .en-shown .nav-links a.nav-help.en-text {
         display: none !important;
       }
 
@@ -434,7 +437,7 @@
 
       /* スマホ用SVGバッジを表示 */
       .nav-links .btn-nav-sp {
-        display: inline-block;
+        display: inline-block !important;
       }
 
       .lang-toggle {
@@ -690,7 +693,7 @@
   </footer>
 
   <style>
-    .en-shown .en-text {
+    .en-shown .en-text:not(.nav-help):not(.nav-support) {
       display: block !important;
     }
 
@@ -698,12 +701,28 @@
       display: inline !important;
     }
 
-    .en-shown .ja-text {
+    .en-shown .ja-text:not(.nav-help):not(.nav-support) {
       display: none !important;
     }
 
     .en-shown span.ja-text {
       display: none !important;
+    }
+
+    /* ヘッダーの nav-help の言語切替 */
+    .nav-links a.nav-help.ja-text { display: inline; }
+    .nav-links a.nav-help.en-text { display: none; }
+    .en-shown .nav-links a.nav-help.ja-text { display: none; }
+    .en-shown .nav-links a.nav-help.en-text { display: inline; }
+
+    /* スマホではヘルプを完全非表示 */
+    @media (max-width: 640px) {
+      .nav-links a.nav-help.ja-text,
+      .nav-links a.nav-help.en-text,
+      .en-shown .nav-links a.nav-help.ja-text,
+      .en-shown .nav-links a.nav-help.en-text {
+        display: none !important;
+      }
     }
   </style>
   <script>

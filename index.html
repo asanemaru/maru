@@ -423,20 +423,41 @@
       display: none;
     }
 
-    /* ヘッダーナビ内のリンクは inline 表示を維持 */
-    .nav-links a.ja-text {
+    /* ヘッダーナビ内のリンクは inline 表示を維持（nav-help/nav-supportを除く） */
+    .nav-links a.ja-text:not(.nav-help):not(.nav-support) {
       display: inline;
     }
 
-    .nav-links a.en-text {
+    .nav-links a.en-text:not(.nav-help):not(.nav-support) {
       display: none;
     }
 
-    body.en-shown .nav-links a.ja-text {
+    body.en-shown .nav-links a.ja-text:not(.nav-help):not(.nav-support) {
       display: none;
     }
 
-    body.en-shown .nav-links a.en-text {
+    body.en-shown .nav-links a.en-text:not(.nav-help):not(.nav-support) {
+      display: inline;
+    }
+
+    /* nav-help / nav-support の言語切替 */
+    .nav-links a.nav-help.ja-text,
+    .nav-links a.nav-support.ja-text {
+      display: inline;
+    }
+
+    .nav-links a.nav-help.en-text,
+    .nav-links a.nav-support.en-text {
+      display: none;
+    }
+
+    body.en-shown .nav-links a.nav-help.ja-text,
+    body.en-shown .nav-links a.nav-support.ja-text {
+      display: none;
+    }
+
+    body.en-shown .nav-links a.nav-help.en-text,
+    body.en-shown .nav-links a.nav-support.en-text {
       display: inline;
     }
 
@@ -461,9 +482,15 @@
         gap: 10px;
       }
 
-      /* スマホではヘルプとお問い合わせを非表示 */
-      .nav-links .nav-help,
-      .nav-links .nav-support {
+      /* スマホではヘルプとお問い合わせを完全非表示（言語切替に関わらず） */
+      .nav-links a.nav-help.ja-text,
+      .nav-links a.nav-help.en-text,
+      .nav-links a.nav-support.ja-text,
+      .nav-links a.nav-support.en-text,
+      body.en-shown .nav-links a.nav-help.ja-text,
+      body.en-shown .nav-links a.nav-help.en-text,
+      body.en-shown .nav-links a.nav-support.ja-text,
+      body.en-shown .nav-links a.nav-support.en-text {
         display: none !important;
       }
 
@@ -474,7 +501,7 @@
 
       /* スマホ用SVGバッジを表示 */
       .nav-links .btn-nav-sp {
-        display: inline-block;
+        display: inline-block !important;
       }
 
       /* 言語切替ボタンを小さく */
