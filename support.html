@@ -420,6 +420,15 @@
         font-size: 12px;
       }
 
+      /* App Storeボタンの文字を短縮 */
+      .btn-nav .btn-text-long {
+        display: none;
+      }
+
+      .btn-nav .btn-text-short {
+        display: inline;
+      }
+
       .lang-toggle {
         gap: 2px;
       }
@@ -495,6 +504,10 @@
       .sp-br {
         display: none;
       }
+
+      .btn-nav .btn-text-short {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -524,7 +537,11 @@
       <a href="./help.html?lang=en" class="nav-help en-text">Help</a>
       <a href="./support.html" class="hide-sp active ja-text">よくある質問・お問い合わせ</a>
       <a href="./support.html?lang=en" class="hide-sp active en-text">Support</a>
-      <a href="#" class="btn-nav"><span class="ja-text">App Storeでダウンロード</span><span class="en-text">Download</span></a>
+      <a href="#" class="btn-nav">
+        <span class="ja-text btn-text-long">App Storeでダウンロード</span>
+        <span class="ja-text btn-text-short">ダウンロード</span>
+        <span class="en-text">Download</span>
+      </a>
     </div>
   </nav>
 

@@ -423,6 +423,23 @@
       display: none;
     }
 
+    /* ヘッダーナビ内のリンクは inline 表示を維持 */
+    .nav-links a.ja-text {
+      display: inline;
+    }
+
+    .nav-links a.en-text {
+      display: none;
+    }
+
+    body.en-shown .nav-links a.ja-text {
+      display: none;
+    }
+
+    body.en-shown .nav-links a.en-text {
+      display: inline;
+    }
+
     @media (max-width: 640px) {
       .site-nav {
         padding: 0 16px;
@@ -430,7 +447,7 @@
 
       /* ヘッダーナビ：スマホでも表示・文字小さく・余白詰める */
       .nav-links {
-        gap: 14px;
+        gap: 12px;
       }
 
       .nav-links a {
@@ -442,13 +459,35 @@
         font-size: 12px;
       }
 
-      /* 長すぎる「よくある質問・お問い合わせ」は短く */
+      /* スマホでは長い版を隠し、短縮版を表示（言語切替ルールを壊さない） */
       .nav-links a.nav-support-long {
-        display: none !important;
+        display: none;
       }
 
-      .nav-links a.nav-support-short {
-        display: inline !important;
+      .nav-links a.nav-support-short.ja-text {
+        display: inline;
+      }
+
+      .nav-links a.nav-support-short.en-text {
+        display: none;
+      }
+
+      /* 英語モード時は short の en-text を表示、ja-text を隠す */
+      body.en-shown .nav-links a.nav-support-short.ja-text {
+        display: none;
+      }
+
+      body.en-shown .nav-links a.nav-support-short.en-text {
+        display: inline;
+      }
+
+      /* App Storeボタンの文字を短縮 */
+      .btn-nav .btn-text-long {
+        display: none;
+      }
+
+      .btn-nav .btn-text-short {
+        display: inline;
       }
 
       /* 言語切替ボタンを小さく */
@@ -536,20 +575,24 @@
         height: 520px;
       }
 
-      /* さらに小さい画面ではヘルプと言語切替も隠す */
+      /* さらに小さい画面ではヘルプも隠す */
       .nav-links .nav-help {
-        display: none !important;
+        display: none;
       }
     }
 
-    /* デスクトップではsp-brは無効化 */
+    /* デスクトップではsp-brと短縮版を無効化 */
     @media (min-width: 641px) {
       .sp-br {
         display: none;
       }
 
       .nav-links a.nav-support-short {
-        display: none !important;
+        display: none;
+      }
+
+      .btn-nav .btn-text-short {
+        display: none;
       }
     }
   </style>
@@ -583,7 +626,11 @@
       <a href="./support.html?lang=en" class="nav-support-long en-text">Support</a>
       <a href="./support.html" class="nav-support-short ja-text">お問い合わせ</a>
       <a href="./support.html?lang=en" class="nav-support-short en-text">Support</a>
-      <a href="#" class="btn-nav"><span class="ja-text">App Storeでダウンロード</span><span class="en-text">Download</span></a>
+      <a href="#" class="btn-nav">
+        <span class="ja-text btn-text-long">App Storeでダウンロード</span>
+        <span class="ja-text btn-text-short">ダウンロード</span>
+        <span class="en-text">Download</span>
+      </a>
     </div>
   </nav>
 
@@ -791,15 +838,23 @@
   <script>
     function switchLang(lang) {
       const isJa = lang === 'ja';
+
+      // 本文のja-text/en-text切替（ヘッダー内のaタグを除く）
       document.querySelectorAll('.ja-text').forEach(el => {
+        // ヘッダーナビ内のリンクはCSSに任せる
+        if (el.closest('.nav-links') && el.tagName.toLowerCase() === 'a') return;
         const tag = el.tagName.toLowerCase();
         el.style.display = isJa ? (tag === 'span' ? 'inline' : 'block') : 'none';
       });
       document.querySelectorAll('.en-text').forEach(el => {
+        // ヘッダーナビ内のリンクはCSSに任せる
+        if (el.closest('.nav-links') && el.tagName.toLowerCase() === 'a') return;
         const tag = el.tagName.toLowerCase();
         el.style.display = isJa ? 'none' : (tag === 'span' ? 'inline' : 'block');
       });
+
       document.body.style.fontFamily = isJa ? "'BIZ UDGothic', sans-serif" : "'DM Sans', sans-serif";
+      document.body.classList.toggle('en-shown', !isJa);
       document.querySelectorAll('.lang-btn').forEach((btn, i) => {
         btn.classList.toggle('active', (i === 0 && isJa) || (i === 1 && !isJa));
       });
